@@ -49,6 +49,15 @@ async function run (){
             const result = await channelCollection.updateOne(filter, updateDoc );
             res.json(result)
         })
+
+        app.delete('/channel/:id' , async(req , res)=>{
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            console.log(query)
+            const station = await channelCollection.deleteOne(query);
+            console.log('deleted station ' , station)
+            res.json(station);
+        })
   
 
         

@@ -29,7 +29,14 @@ async function run (){
     
     
          
-       
+        app.get('/channel/:email' , async(req ,res)=>{
+            const email = req.params.email;
+            const query = {userEmail : email}
+            const cursor =channelCollection.find(query);
+            const blogs = await cursor.toArray();
+            res.json(blogs)
+
+        })
       
 
   

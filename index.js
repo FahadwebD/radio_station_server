@@ -38,7 +38,17 @@ async function run (){
 
         })
       
+        app.put('/channel/edit', async(req,res)=>{
 
+            const id = req.body._id
+            const stationName = req.body.name;
+            const stationRegion = req.body.region;
+            const servieChannel = req.body.channel;
+            const filter = {_id: ObjectId(id)};
+            const updateDoc = {$set:  {name:stationName, region:stationRegion, channelNo:servieChannel}};
+            const result = await channelCollection.updateOne(filter, updateDoc );
+            res.json(result)
+        })
   
 
         
